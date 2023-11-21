@@ -7,9 +7,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,7 +28,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  const MyHomePage({Key? key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -37,96 +36,96 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int currentPage = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: HomePage(),
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          children: [
-            //! Btn1
-            Spacer(),
-            IconButton(
-              icon: Icon(
-                Icons.home,
-                color: currentPage == 0
-                    ? Color.fromRGBO(203, 75, 101, 1)
-                    : Color.fromRGBO(40, 40, 40, 1),
-              ),
-              onPressed: () {
-                setState(() {
-                  currentPage = 0;
-                });
-              },
-            ),
-            Spacer(),
-            //! Btn2
-            IconButton(
-              icon: Icon(
-                Icons.search,
-                color: currentPage == 1
-                    ? Color.fromRGBO(203, 75, 101, 1)
-                    : Color.fromRGBO(40, 40, 40, 1),
-              ),
-              onPressed: () {
-                setState(() {
-                  currentPage = 1;
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SearchPage()),
-                  );
-                });
-              },
-            ),
-            Spacer(),
-            //! Btn3
-            IconButton(
-              icon: Icon(
-                Icons.ondemand_video,
-                color: currentPage == 2
-                    ? Color.fromRGBO(203, 75, 101, 1)
-                    : Color.fromRGBO(40, 40, 40, 1),
-              ),
-              onPressed: () {
-                setState(() {
-                  currentPage = 2;
-                });
-              },
-            ),
-            Spacer(),
-            //! Btn4
-            IconButton(
-              icon: Icon(
-                Icons.card_travel,
-                color: currentPage == 3
-                    ? Color.fromRGBO(203, 75, 101, 1)
-                    : Color.fromRGBO(40, 40, 40, 1),
-              ),
-              onPressed: () {
-                setState(() {
-                  currentPage = 3;
-                });
-              },
-            ),
-            Spacer(),
-            //! Btn5
-            IconButton(
-              icon: Icon(
-                Icons.person,
-                color: currentPage == 4
-                    ? Color.fromRGBO(203, 75, 101, 1)
-                    : Color.fromRGBO(40, 40, 40, 1),
-              ),
-              onPressed: () {
-                setState(() {
-                  currentPage = 4;
-                });
-              },
-            ),
-            Spacer(),
-          ],
-        ),
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentPage: currentPage,
+        onTabTapped: (index) {
+          setState(() {
+            currentPage = index;
+          });
+          navigateToPage(index);
+        },
       ),
     );
+  }
+
+  void navigateToPage(int index) {
+    switch (index) {
+      case 0:
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomePage()));
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SearchPage()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomePage()));
+        break;
+      case 3:
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomePage()));
+        break;
+      case 4:
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomePage()));
+        break;
+    }
+  }
+}
+
+class CustomBottomNavigationBar extends StatelessWidget {
+  final int currentPage;
+  final Function(int) onTabTapped;
+
+  const CustomBottomNavigationBar({
+    required this.currentPage,
+    required this.onTabTapped,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomAppBar(
+      child: Row(
+        children: [
+          for (int i = 0; i < 5; i++) const Spacer(),
+          for (int i = 0; i < 5; i++)
+            IconButton(
+              icon: Icon(
+                _getIconForIndex(i),
+                color: currentPage == i
+                    ? const Color.fromRGBO(203, 75, 101, 1)
+                    : const Color.fromRGBO(40, 40, 40, 1),
+              ),
+              onPressed: () => onTabTapped(i),
+            ),
+          for (int i = 0; i < 5; i++) const Spacer(),
+        ],
+      ),
+    );
+  }
+
+  IconData _getIconForIndex(int index) {
+    switch (index) {
+      case 0:
+        return Icons.home;
+      case 1:
+        return Icons.search;
+      case 2:
+        return Icons.ondemand_video;
+      case 3:
+        return Icons.card_travel;
+      case 4:
+        return Icons.person;
+      default:
+        return Icons.home;
+    }
   }
 }

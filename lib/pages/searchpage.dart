@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/main.dart';
 
-class SearchPage extends StatelessWidget {
+class SearchPage extends StatefulWidget {
   SearchPage({Key? key});
+
+  @override
+  _SearchPageState createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
+  int currentPage = 1; // Assuming 1 is the index for the Search Page
 
   List<String> posts = [
     "images/azam_post.jpg",
@@ -12,6 +20,22 @@ class SearchPage extends StatelessWidget {
     "images/pdp_post.jpg",
     "images/bunik_post.jpg",
     "images/maknuna_post.jpg",
+    "images/azamazing.jpg",
+    "images/gayrat_post.jpg",
+    "images/azamazing.jpg",
+    "images/pdp_post.jpg",
+    "images/pdp_post.jpg",
+    "images/book_post.jpg",
+    "images/azamazing.jpg",
+    "images/pdp_post.jpg",
+    "images/azamazing.jpg",
+    "images/azamazing.jpg",
+    "images/azamazing.jpg",
+    "images/azamazing.jpg",
+    "images/azamazing.jpg",
+    "images/azamazing.jpg",
+    "images/azamazing.jpg",
+    "images/azamazing.jpg",
   ];
 
   @override
@@ -55,6 +79,7 @@ class SearchPage extends StatelessWidget {
               height: 30,
               margin: const EdgeInsets.only(
                 top: 10,
+                bottom: 10,
               ),
               child: ListView(
                 scrollDirection: Axis.horizontal,
@@ -63,8 +88,8 @@ class SearchPage extends StatelessWidget {
                   _tagItem('Science and Tech'),
                   _tagItem('Flutter'),
                   _tagItem('YouTube'),
-                  _tagItem('Azamazing_guy'),
-                  _tagItem('me.coding'),
+                  _tagItem('Travel'),
+                  _tagItem('Hostels'),
                 ],
               ),
             ),
@@ -90,22 +115,35 @@ class SearchPage extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentPage: currentPage,
+        onTabTapped: (index) {
+          setState(() {
+            currentPage = index;
+          });
+          navigateToPage(index);
+        },
+      ),
     );
   }
-}
 
-Widget _tagItem(String title) {
-  return Container(
-    margin: const EdgeInsets.only(left: 10, right: 10),
-    decoration: BoxDecoration(
-      border: Border.all(width: 1, color: Colors.grey.shade400),
-      borderRadius: const BorderRadius.all(
-        Radius.circular(5),
+  Widget _tagItem(String title) {
+    return Container(
+      margin: const EdgeInsets.only(left: 10, right: 10),
+      decoration: BoxDecoration(
+        border: Border.all(width: 1, color: Colors.grey.shade400),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(5),
+        ),
       ),
-    ),
-    child: Container(
-      margin: const EdgeInsets.all(5),
-      child: Text(title),
-    ),
-  );
+      child: Container(
+        margin: const EdgeInsets.all(5),
+        child: Text(title),
+      ),
+    );
+  }
+
+  void navigateToPage(int index) {
+    Navigator.pop(context);
+  }
 }
