@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/main.dart';
+import 'package:instagram_clone/pages/homepage.dart';
+import 'package:instagram_clone/screens/profile_base_screen.dart';
 
 class SearchPage extends StatefulWidget {
   SearchPage({Key? key});
@@ -9,7 +11,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  int currentPage = 1; // Assuming 1 is the index for the Search Page
+  int currentPage = 1;
 
   List<String> posts = [
     "assets/images/azam_post.jpg",
@@ -28,7 +30,6 @@ class _SearchPageState extends State<SearchPage> {
     "assets/images/book_post.jpg",
     "assets/images/azamazing.jpg",
     "assets/images/pdp_post.jpg",
-    "assets/images/azamazing.jpg",
     "assets/images/azamazing.jpg",
     "assets/images/azamazing.jpg",
     "assets/images/azamazing.jpg",
@@ -144,6 +145,31 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   void navigateToPage(int index) {
-    Navigator.pop(context);
+    if (index == 0) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
+    } else if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SearchPage()),
+      );
+    } else if (index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
+    } else if (index == 3) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
+    } else if (index == 4) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ProfileBaseScreen()),
+      );
+    }
   }
 }

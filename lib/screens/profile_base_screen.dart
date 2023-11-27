@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/main.dart';
+import 'package:instagram_clone/pages/homepage.dart';
+import 'package:instagram_clone/pages/searchpage.dart';
 import 'package:instagram_clone/screens/gallery_screen.dart';
 import 'package:instagram_clone/screens/igtv_screen.dart';
 import 'package:instagram_clone/screens/reels_screen.dart';
@@ -10,6 +13,7 @@ class ProfileBaseScreen extends StatefulWidget {
 }
 
 class _ProfileBaseScreenState extends State<ProfileBaseScreen> {
+  int currentPage = 4;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,16 +29,25 @@ class _ProfileBaseScreenState extends State<ProfileBaseScreen> {
           ),
           child: AppBar(
             backgroundColor: Colors.white,
-            title: const Text(
-              "azamazing_guy",
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
+            title: TextButton(
+              onPressed: () => print("Add"),
+              child: const Row(children: [
+                Text(
+                  "azamazing guy",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                Icon(Icons.keyboard_arrow_down),
+              ]),
             ),
             centerTitle: false,
             elevation: 0,
             actions: [
               IconButton(
-                icon:const Icon(
+                icon: const Icon(
                   Icons.add_box_outlined,
                   color: Colors.black,
                 ),
@@ -45,7 +58,7 @@ class _ProfileBaseScreenState extends State<ProfileBaseScreen> {
                   Icons.menu,
                   color: Colors.black,
                 ),
-                onPressed: () => print("Add"),
+                onPressed: () => print("Settings"),
               )
             ],
           ),
@@ -111,6 +124,44 @@ class _ProfileBaseScreenState extends State<ProfileBaseScreen> {
           ),
         ),
       ),
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentPage: currentPage,
+        onTabTapped: (index) {
+          setState(() {
+            currentPage = index;
+          });
+          navigateToPage(index);
+        },
+      ),
     );
+  }
+
+  void navigateToPage(int index) {
+    if (index == 0) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
+    } else if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SearchPage()),
+      );
+    } else if (index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
+    } else if (index == 3) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
+    } else if (index == 4) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ProfileBaseScreen()),
+      );
+    }
   }
 }

@@ -13,8 +13,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: true,
+      title: 'Instagram Demo',
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
           elevation: 1,
@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HomePage(),
+      body: _getPage(currentPage),
       bottomNavigationBar: CustomBottomNavigationBar(
         currentPage: currentPage,
         onTabTapped: (index) {
@@ -57,27 +57,53 @@ class _MyHomePageState extends State<MyHomePage> {
   void navigateToPage(int index) {
     switch (index) {
       case 0:
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomePage()));
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
         break;
       case 1:
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => SearchPage()),
         );
         break;
       case 2:
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomePage()));
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
         break;
       case 3:
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomePage()));
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
         break;
       case 4:
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ProfileBaseScreen(),));
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => ProfileBaseScreen()),
+        );
         break;
+    }
+  }
+
+  Widget _getPage(int index) {
+    switch (index) {
+      case 0:
+        return HomePage();
+      case 1:
+        return SearchPage();
+      case 2:
+        // Replace with the appropriate page for index 2
+        return HomePage();
+      case 3:
+        return HomePage();
+      case 4:
+        return ProfileBaseScreen();
+      default:
+        return HomePage();
     }
   }
 }
@@ -96,18 +122,18 @@ class CustomBottomNavigationBar extends StatelessWidget {
     return BottomAppBar(
       child: Row(
         children: [
-          for (int i = 0; i < 5; i++) const Spacer(),
           for (int i = 0; i < 5; i++)
-            IconButton(
-              icon: Icon(
-                _getIconForIndex(i),
-                color: currentPage == i
-                    ? const Color.fromRGBO(203, 75, 101, 1)
-                    : const Color.fromRGBO(40, 40, 40, 1),
+            Expanded(
+              child: IconButton(
+                icon: Icon(
+                  _getIconForIndex(i),
+                  color: currentPage == i
+                      ? const Color.fromRGBO(203, 75, 101, 1)
+                      : const Color.fromRGBO(40, 40, 40, 1),
+                ),
+                onPressed: () => onTabTapped(i),
               ),
-              onPressed: () => onTabTapped(i),
             ),
-          for (int i = 0; i < 5; i++) const Spacer(),
         ],
       ),
     );
@@ -120,9 +146,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
       case 1:
         return Icons.search;
       case 2:
-        return Icons.ondemand_video;
+        return Icons.add_box_outlined;
       case 3:
-        return Icons.card_travel;
+        return Icons.ondemand_video;
       case 4:
         return Icons.person;
       default:

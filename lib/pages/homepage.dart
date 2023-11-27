@@ -8,26 +8,27 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   List<String> profileImages = [
-    "images/azamazing.jpg",
-    "images/gayratjon.jpg",
-    "images/mirzabekov.jpg",
-    "images/teacherAzam.jpg",
-    "images/goldenbooks.jpg",
-    "images/pdpUniversity.jpg",
-    "images/i_bunik.jpg",
-    "images/maknuna_12.jpg",
+    "assets/images/azamazing.jpg",
+    "assets/images/gayratjon.jpg",
+    "assets/images/mirzabekov.jpg",
+    "assets/images/teacherAzam.jpg",
+    "assets/images/goldenbooks.jpg",
+    "assets/images/pdpUniversity.jpg",
+    "assets/images/i_bunik.jpg",
+    "assets/images/maknuna_12.jpg",
   ];
 
   List<String> posts = [
-    "images/azam_post.jpg",
-    "images/gayrat_post.jpg",
-    "images/asad_post.jpg",
-    "images/me_post.jpg",
-    "images/book_post.jpg",
-    "images/pdp_post.jpg",
-    "images/bunik_post.jpg",
-    "images/maknuna_post.jpg",
+    "assets/images/azam_post.jpg",
+    "assets/images/gayrat_post.jpg",
+    "assets/images/asad_post.jpg",
+    "assets/images/me_post.jpg",
+    "assets/images/book_post.jpg",
+    "assets/images/pdp_post.jpg",
+    "assets/images/bunik_post.jpg",
+    "assets/images/maknuna_post.jpg",
   ];
 
   Future<void> justRefresh() async {
@@ -39,14 +40,10 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset(
-          'images/insta_name.png',
+          'assets/images/insta_name.png',
           height: 40,
         ),
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.add_circle_outline),
-          ),
           IconButton(
             onPressed: () {},
             icon: const Icon(Icons.favorite_border_outlined),
@@ -75,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           CircleAvatar(
                             radius: 35,
-                            backgroundImage: AssetImage('images/story.jpg'),
+                            backgroundImage: AssetImage('assets/images/story.jpg'),
                             child: CircleAvatar(
                               radius: 32,
                               backgroundImage: AssetImage(
@@ -114,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                             padding: EdgeInsets.all(10.0),
                             child: CircleAvatar(
                               radius: 14,
-                              backgroundImage: AssetImage('images/story.jpg'),
+                              backgroundImage: AssetImage('assets/images/story.jpg'),
                               child: CircleAvatar(
                                 radius: 12,
                                 backgroundImage: AssetImage(

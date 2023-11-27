@@ -5,10 +5,10 @@ class Highlight {
 }
 
 List<Highlight> highlightItems = [
-  Highlight(thumbnail: 'images/bike.jpg', title: "My Bike 🏍"),
-  Highlight(thumbnail: 'images/cooking.jpg', title: "Cooking 🔪"),
-  Highlight(thumbnail: 'images/nature.jpg', title: "Nature 🏞"),
-  Highlight(thumbnail: 'images/pet.jpg', title: "Pet ❤️"),
-  Highlight(thumbnail: 'images/swimming.jpg', title: "Pool 🌊"),
-  Highlight(thumbnail: 'images/yoga.jpg', title: "Yoga 💪🏻"),
+  Highlight(thumbnail: 'assets/images/bike.jpg', title: "My Bike 🏍"),
+  Highlight(thumbnail: 'assets/images/cooking.jpg', title: "Cooking 🔪"),
+  Highlight(thumbnail: 'assets/images/nature.jpg', title: "Nature 🏞"),
+  Highlight(thumbnail: 'assets/images/pet.jpg', title: "Pet ❤️"),
+  Highlight(thumbnail: 'assets/images/swimming.jpg', title: "Pool 🌊"),
+  Highlight(thumbnail: 'assets/images/yoga.jpg', title: "Yoga 💪🏻"),
 ];

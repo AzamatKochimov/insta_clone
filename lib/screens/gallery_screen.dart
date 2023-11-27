@@ -42,13 +42,16 @@ class _GalleryState extends State<Gallery> {
   }
 
   Widget _createGridTileWidget(String url) => Builder(
-        builder: (context) => GestureDetector(
-          onLongPress: () {
-            _popupDialog = _createPopupDialog(url);
-            Overlay.of(context).insert(_popupDialog);
-          },
-          onLongPressEnd: (details) => _popupDialog.remove(),
-          child: Image.network(url, fit: BoxFit.cover),
+        builder: (context) => Padding(
+          padding: const EdgeInsets.all(0.7),
+          child: GestureDetector(
+            onLongPress: () {
+              _popupDialog = _createPopupDialog(url);
+              Overlay.of(context).insert(_popupDialog);
+            },
+            onLongPressEnd: (details) => _popupDialog.remove(),
+            child: Image.asset(url, fit: BoxFit.cover),
+          ),
         ),
       );
 
@@ -103,7 +106,7 @@ class _GalleryState extends State<Gallery> {
             mainAxisSize: MainAxisSize.min,
             children: [
               _createPhotoTitle(),
-              Image.network(url, fit: BoxFit.fitWidth),
+              Image.asset(url, fit: BoxFit.fitWidth),
               _createActionBar(),
             ],
           ),
@@ -157,9 +160,9 @@ class AnimatedDialogState extends State<AnimatedDialog>
       color: Colors.black.withOpacity(opacityAnimation!.value),
       child: Center(
         child: FadeTransition(
-          opacity: opacityAnimation as Animation<double>, // Explicit cast
+          opacity: opacityAnimation as Animation<double>,
           child: ScaleTransition(
-            scale: scaleAnimation as Animation<double>, // Explicit cast
+            scale: scaleAnimation as Animation<double>,
             child: widget.child,
           ),
         ),

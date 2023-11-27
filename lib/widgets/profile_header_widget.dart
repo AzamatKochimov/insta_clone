@@ -21,7 +21,7 @@ Widget profileHeaderWidget(BuildContext context) {
                 radius: 40,
                 backgroundColor: Color(0xff74EDED),
                 backgroundImage:
-                    NetworkImage("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Ffemale%2520portrait%2F&psig=AOvVaw17egGOlNiftw0WvWbj11b_&ust=1701194131950000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCPi5sJDg5IIDFQAAAAAdAAAAABAE"),
+                    AssetImage("assets/images/azamazing.jpg"),
               ),
               Row(
                 children: [
