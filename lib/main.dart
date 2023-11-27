@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/pages/homepage.dart';
+import 'package:instagram_clone/screens/profile_base_screen.dart';
 import 'package:instagram_clone/pages/searchpage.dart';
 
 void main() {
@@ -75,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
         break;
       case 4:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomePage()));
+            context, MaterialPageRoute(builder: (context) => ProfileBaseScreen(),));
         break;
     }
   }
